@@ -1,0 +1,63 @@
+Exception habdling
+
+
+class myexception extends RuntimeException{
+    string msg;
+    public myexcpetion (String msg){
+        this.msg =msg;
+    }
+    public String toString(){
+        return msg;
+    }
+}
+
+public class ExceptionTest{
+    public static void foobar() {
+        int var1 =1;
+        int var2 =0;
+        try{System.out.println(var1/var2);}
+        catch(Exception e){
+            Ststem.out.println("cannot divide by 0");
+        }
+    }
+
+    // you can add throws to acknowladge it or add a try catch around the if then
+public static void main(String[] args) throws myException{
+    foobar();
+    Ststem.out.println("main continues");
+    int var1 = 6;
+        if (var1 <10){
+            throw new myException("num too small");
+        }
+}}
+}
+
+// Running exceptions (throw throws try catch finally) have a heirarchy so its important to know 
+//which to run whenon a specific part of the code
+
+// throws is for a string that may have an exception 
+throw is to throw that exception
+throwable -> error and exception
+exception-> IOexception and RuntimeException
+
+runtime exceptions arent checked so it will have the something divided by zero
+and skip it and log in chat
+
+
+IO stream
+ne Scanner(Ststem.in)
+Ststem.out.println():
+//input streams are byte streams, read byte by byte
+
+Reader streams wraps arounda srream and adds proper text encoding to be able to read chars
+buffered readers go aroud readers to buffer it. it can read many characters at once
+reducing system costs
+
+BufferedReader in = new BufferedReader(new inputStreamReader(system.in));
+Scanner classes are for reading specific types of data
+nextint(), nextDouble()nextLine() etc 
+
+FileinputStream is the most basic way to read data from files 
+FileReader is fileinputStream andInputstreamReader
+
+
