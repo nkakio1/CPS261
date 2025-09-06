@@ -60,7 +60,5 @@ nextint(), nextDouble()nextLine() etc
 FileinputStream is the most basic way to read data from files 
 FileReader is fileinputStream andInputstreamReader
 
-sss
-ss
-skip
+
 
