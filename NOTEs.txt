@@ -62,3 +62,63 @@ FileReader is fileinputStream andInputstreamReader
 
 
 
+File IO
+
+IO statements are considered checked exceptions so try catch blocks are nescesary
+within try fileIO is local to the brackets
+
+file IO needs to be initialized to null
+FileReader fileIO =null;
+
+
+public in read()
+    throws IO exception
+// reads a single charater and outputs the ascii value of the characters
+if you reach the end of a line it will return -1 so build that into to stop the loop
+apllying the output to a variable helps you stop it and output the values
+you may need more than once catch for exceptions since they are a heirarchy
+
+Better to cast since you need read to output -1 to stop the loop, casting 
+char to the ascii is barely more labor intensive, but makes it easier to stop the loop over all saving pc resources 
+over all the catches, finally closing the IO, for fileIO you can add the throws declaration to 
+main rather than add another try catch case.
+
+Files that are read need to be added to the project level, at root level. not within the same package as the code.
+
+scanner IO have their own constructers, you can pass a file input stream through a scannerIO
+e.g. ScannerIO = new Scanner(new FileinputStream("File you are calling"))
+
+
+OR 
+
+while(scannerIO.hasNext())//detects the next white space and will return the string
+System.out.println(scannerIO.next);
+
+AND CLOSE
+
+scannerIO.close();
+The scanner will print chunks of characters rather than one at a time
+fileOut = new FileWriter("output.txt);
+only when you dont have writing permissions it will throw the output, but it will create a txt file
+fileOut.write(c); // ascii value
+
+fileOut.close();
+
+PrintWriter writes formatted data to an underlying writer, writes formatted
+text rather than ascii values
+can write int long and float//primitive data types as characters rather than
+ascii
+
+write only writes per charater no way to formatted
+
+PrintWriter printOut = null;
+
+printOut = new PrintWriter(new FileOutputStream("output.txt));
+printOut.println(scannerIO.next); //NOT VALID WITH TWO .next calls
+
+WILL NOT ADD TO A FILE it will replace all date in file.
+
+
+
+
+
