@@ -9,6 +9,9 @@ public class ReaderFile {
 //MAKE OUTPUT FILE INSTEAD OF PRINTING TO SYSTEM, Make program return when file is not found.
 
 	public static void main(String[] args) throws FileNotFoundException {
+		PrintStream originalOut = System.out;
+	
+		
 		int asa =0;
 		int numcap =0;
 	
@@ -18,7 +21,10 @@ public class ReaderFile {
 			String filename = Input;
 		
 
-		
+			try {
+	            // Step 2: Set up the new output stream to a file
+	            PrintStream fileOut = new PrintStream(new FileOutputStream("OUTput.txt", true));
+	            System.setOut(fileOut);
 		
 		
 		try (Scanner fs = new Scanner(new File(filename))) {
@@ -28,7 +34,7 @@ public class ReaderFile {
 		    	System.out.print(line);
 		    	System.out.print(" Generated this: \n");
 		       }else{
-		    	   System.out.println("The file is empty");
+		    	   originalOut.println("The file is empty");
 		    	   return;
 		       }
 		    if(fs.hasNext()) {		    	
@@ -71,22 +77,21 @@ public class ReaderFile {
 					Rowcnt = 0;
 					System.out.print("\n");
 				}else if(NumCount == numcap) {
+					System.out.println();
 					break;
 				}
 					}
 				}//while
 				
 				if(NumCount < numcap){
-					System.out.print("\nNot enough data to reach desired number! ");
-					System.out.println();
+					 originalOut.println("Not enough data to reach desired number!\n ");
+				
 				}if (asa ==1) {
-					System.out.println();
-					System.out.print("Non Number included in file.");
-					System.out.println();
-
+					 originalOut.println("\nNon Number included in file.\n");
+					
 				}
             } else {
-            	System.out.print("\n Not enough data or limit of 0!");
+            	 originalOut.println("\n Not enough data or limit of 0!");
             }//if
 			
 				
@@ -95,14 +100,28 @@ public class ReaderFile {
 		
 		
 	}catch(FileNotFoundException e){
-	System.out.print("\n File not found!" + e);
+		 originalOut.println("\n File not found!" + e);
 	return;
 	}
-		  }//main 
+		  
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			System.setOut(originalOut);
+		}
+		System.out.println("Your data has be output to OUTpu.txt!");
+		
+		
+		
+		
+		
+		
+		
+}//main
+		
 }//class
-		
 }
-		
 
 
 
@@ -116,8 +135,12 @@ public class ReaderFile {
  *  how can I change this to skip the letter if numcap is read as f4 in the file 
  * I want it to readthe 4 but skip the f 
  *  how to return to the top of the program after catching an exception 
- * 
- * 
+ * how can I, within the try block, override the file output, and print to the command line again
+ * how to edit this so it spends			try {
+	            // Step 2: Set up the new output stream to a file
+	            PrintStream fileOut = new PrintStream(new FileOutputStream("OUTput.txt"));
+	            System.setOut(fileOut);
+		
  * 
  * 
  * Code before correction:
@@ -290,7 +313,7 @@ try (Scanner Numscan = new Scanner(new File(filename))){
 	}
  * 
  * 
- * 
+ * originalout("\n Not enough data or limit of 0!");
  *
  *  TRIAL AND ERROR
  *
