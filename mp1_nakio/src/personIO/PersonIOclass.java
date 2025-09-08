@@ -48,7 +48,10 @@ case 0:
 System.out.println("Bye");
 break;
 case 1:
-//invoke add
+//add example  person myData = new DataPair("Example", 123);
+	System.out.println("Enter Name:");
+	
+
 case 2:
 //invoke display
 }
