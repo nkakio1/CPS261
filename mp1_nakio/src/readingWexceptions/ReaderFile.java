@@ -129,24 +129,13 @@ public class ReaderFile {
 
 
 
-/* AI help section
- * Prompts : why is this only printing 9 characters in a row public 
- * I cant read a variable outside my loop here 
- *  how can I change this to skip the letter if numcap is read as f4 in the file 
- * I want it to readthe 4 but skip the f 
- *  how to return to the top of the program after catching an exception 
- * how can I, within the try block, override the file output, and print to the command line again
- * how to edit this so it spends			try {
-	            // Step 2: Set up the new output stream to a file
-	            PrintStream fileOut = new PrintStream(new FileOutputStream("OUTput.txt"));
-	            System.setOut(fileOut);
-		
+/* AI USED:
  * 
+ * Tool: copilot
  * 
- * Code before correction:
- * 
- * 
- * 	public static void main(String[] args) throws IOException {
+ * Prompt : why is this only printing 9 characters in a row public 
+ * Original code:
+ *  * 	public static void main(String[] args) throws IOException {
 		String filename = "file1.txt";
 
 		try (Scanner fs = new Scanner(new File(filename))) {
@@ -159,13 +148,17 @@ public class ReaderFile {
 		       }//if statement
 		     }//try
 		int numcap =1;
- * 
- * 
- * 
- * 
- * 
- * 
- * int Rowcnt =0;
+		
+		
+		
+		
+		
+		AI USED:
+		
+		Tool: copilot
+		Prompt: I cant read a variable outside my loop here 
+		Original code: 
+		* int Rowcnt =0;
 				while (Numscan.hasNext()){
 					String readint = Numscan.next();
 				Rowcnt = Rowcnt +1;
@@ -174,146 +167,54 @@ public class ReaderFile {
 					System.out.print("\n");
 				}else if(Rowcnt <= 10) {
 					System.out.print(readint + " ");
- */
 		
-/*
- * import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
-
-public class MyFileParser {
-
-    public static void main(String[] args) throws IOException {
-        
-        try (Scanner fileScanner = new Scanner(new File("file1.txt"))) {
-            // Read the first line of the file.
-            // You can remove this if you want to process the whole file.
-            if (fileScanner.hasNextLine()) {
-                String line = fileScanner.nextLine();
-                
-                // Use a second Scanner to parse the words in the line.
-                try (Scanner lineScanner = new Scanner(line)) {
-                    while (lineScanner.hasNext()) {
-                        if (lineScanner.hasNextInt()) {
-                            // If the next token is an integer, just consume it and move on.
-                            lineScanner.nextInt();
-                        } else if (lineScanner.hasNextDouble()) {
-                             // If it's a double, consume it too.
-                             lineScanner.nextDouble();
-                        } else {
-                            // If it's not a number, read and print it.
-                            String word = lineScanner.next();
-                            System.out.println(word);
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
- * 		
+ * 
+ * AI USED:
+ * 
+ * Tool: copilot
+ * Prompt: Why is this not appending
+ * 
+ *Original code:
  *
-		
-
-try (Scanner fs = new Scanner(new File(filename))) {
-
-    if (fs.hasNextLine()) {		
-    	String line =fs.next();
-    	System.out.print(line);
-    	System.out.print(" Generated this: \n");
-       }//if statement
-    if(fs.hasNextInt()) {		    	
-    	 numcap = fs.nextInt();
-	    	System.out.print(  "\n"+numcap + "\n\n");
-
-
-    }else {
-    	fs.next();
-    	asa++;
-    }
-     }//try
-
-
-
-
-
-
-try (Scanner Numscan = new Scanner(new File(filename))){
-	if (Numscan.hasNextLine()) {
-        // Read the first line and discard it.
-		Numscan.nextLine();
-		int NumCount =0;
-		int Rowcnt =0;
-		while (Numscan.hasNext()){
-			if(Numscan.hasNextInt() !=true) {
-				Numscan.next();		
-				asa = asa +1;
-			}else {
-			String readint = Numscan.next();
-			System.out.print(readint + " ");
-			Rowcnt = Rowcnt +1;
-			NumCount = NumCount+1;
-		if(Rowcnt == 10) {
-			Rowcnt = 0;
-			System.out.print("\n");
-		}else if(NumCount == numcap) {
-			break;
-		}
-			}
-		}//while
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		if(NumCount < numcap){
-			System.out.print("\nNot enough data to reach desired number! ");
-			System.out.println();
-		}if (asa ==1) {
-			System.out.println();
-			System.out.print("Non Number included in file.");
-			System.out.println();
-		
-			try (Scanner fs = new Scanner(new File(filename))) {
-
-
-
-
-
-
-
-
-		    if (fs.hasNextLine()) {		
-		    	String line =fs.next();
-		    	System.out.print(line);
-		    	System.out.print(" Generated this: \n");
-		       }//if statement
-		    if(fs.hasNext()) {		    	
-		    	String potentialnumcap = fs.next();
-			    
-			 try {   	numcap =Integer.parseInt(potentialnumcap);
-			 
-//	System.out.print(  "\n"+ potentialnumcap + "\n\n");
-			 }catch(NumberFormatException e) {
-		    	fs.next();
-		    	asa++;
-		    }
-		     }//try
-		
-/*
- * 
- * 	}catch(FileNotFoundException e){
-	System.out.print("\n File not found!");
-	return;
-	}
+ * 			try {
+	            // Step 2: Set up the new output stream to a file
+	            PrintStream fileOut = new PrintStream(new FileOutputStream("OUTput.txt"));
+	            System.setOut(fileOut);
  * 
  * 
- * originalout("\n Not enough data or limit of 0!");
+ * AI USED:
+ * Tool: Gemini Structured Learning Mode 
+ * Prompt: 
+
+ Original code:Why is this still running through the program, even though the number which sets the desired output numbers is 0 (numcap)
+ 
+ try (Scanner Numscan = new Scanner(new File(filename))){
+			if (Numscan.hasNextLine()) {
+                // Read the first line and discard it.
+				Numscan.nextLine();
+				int NumCount =0;
+				int Rowcnt =0;
+				while (Numscan.hasNext()){
+					if(Numscan.hasNextInt() !=true) {
+						Numscan.next();		
+						asa = asa +1;
+					}else {
+					String readint = Numscan.next();
+					System.out.print(readint + " ");
+					Rowcnt = Rowcnt +1;
+					NumCount = NumCount+1;
+				if(Rowcnt == 10) {
+					Rowcnt = 0;
+					System.out.print("\n");
+				}else if(NumCount == numcap) {
+					System.out.println();
+					break;
+				}
+					}
+				}//while
+
+		
+ *
  *
  *  TRIAL AND ERROR
  *
