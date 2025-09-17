@@ -1,0 +1,242 @@
+Checklist for project
+
+    Project setup
+
+-Create three logical units/files: one for the Student class, one for the MySelectionSort utility class, and one small test driver (a main or simple test harness) to create students and exercise the sort.
+
+-Pick clear class/file names and keep each class in its own file for readability.
+
+    Design the Student class
+
+-Decide on the fields: studentID (int), name (String), gpa (double).
+
+-Make studentID private and do not provide a public setter for it (IDs must be generated automatically).
+
+-Use a private static integer (a class variable) to track the next available ID. In every constructor assign the current static value to the new student’s studentID and then increment the static tracker.
+
+-Provide at least two constructors conceptually:
+
+-a full/parameterized constructor that accepts name and gpa and sets an auto ID,
+
+-optionally a minimal/empty constructor if you want to support default construction.
+
+-Provide public accessors (getters) for all fields. Provide mutators (setters) for fields that should be changeable — for this assignment probably name and gpa only.
+
+-Add validation in setters/constructors:
+
+-name should not be null or empty,
+
+-gpa should be within a sensible range (for example 0.0 to 4.0).
+
+-If invalid input is supplied, handle it consistently (throw an exception or normalize) and document the behavior.
+
+    Make Student implement Comparable
+
+-Declare the class to implement the Comparable contract for Student.
+
+-Implement compareTo so it compares studentID values: returns negative when this ID is smaller, zero if equal, positive if larger.
+
+-Add a safe null check in compareTo: decide whether to treat null as less or greater or throw a NullPointerException (document whichever decision you make).
+
+-Document the natural ordering in class comments (so users know the default order is by studentID).
+
+    Add helpful utility methods
+
+-Override toString (or provide a convenient display method) so printing a Student shows name, ID, and GPA—this will make testing output readable.
+
+-Consider overriding equals and hashCode. A reasonable choice: equality based on the unique studentID only. Document your choice.
+
+-Implement the generic selection sort
+
+-Create MySelectionSort with a single generic static method that sorts an array in place.
+
+-The method should accept an array of elements that are comparable according to their natural ordering.
+
+-Algorithm (in plain words): for each position i from the start to the next-to-last, find the smallest element in the subarray from i to end, then swap that smallest element into position i.
+
+-Ensure your method handles edge cases: null array reference, empty array, array with one element, arrays that already sorted, arrays with duplicate elements.
+
+-Document complexity and characteristics: time complexity is O(n²), space complexity is O(1), and selection sort is not stable (equal elements may not preserve original relative order).
+
+    Test plan — verify sorting by ID
+
+-In your test driver create an array of multiple sample students (6–10 is a good number). Use distinct names and GPAs, but rely on construction order to produce different IDs.
+
+-Print the array before sorting so you can visually confirm the initial ID order.
+
+-Call your selection sort on the student array.
+
+-Print the array after sorting and verify that the students are ordered by increasing studentID.
+
+-Add assertions (or small checks) that verify the sorted condition programmatically (for each consecutive pair assert earlier.compareTo(later) <= 0).
+
+    Change compareTo to use name, re-test
+
+-Comment out the previous compareTo implementation.
+
+-Re-implement compareTo so it compares student names (decide case sensitivity — typically use case-insensitive comparison unless the assignment specifies otherwise).
+
+-Re-run the same test harness:
+
+    -Create students (IDs are still auto-generated but natural order is now name),
+
+    -Print before and after sorting,
+
+    -Verify that the final order follows alphabetical order of names.
+
+Note: because selection sort is not stable, if multiple students have the same name their relative order by ID may change after sorting. Mention this in your report.
+
+    Additional testing and edge cases
+
+-Test arrays with:
+
+    -duplicate names,
+
+    -duplicate GPAs,
+
+    -null elements (if your sort should support them, define semantics; otherwise ensure you disallow nulls and handle gracefully),
+
+    -already sorted and reverse-sorted arrays.
+
+-Test behavior when constructing many students to ensure the static ID counter increments correctly and does not reset unexpectedly (e.g., verify IDs are unique over multiple constructions).
+
+    Debugging tips
+
+-Use the toString output to print array snapshots before and after each major operation.
+
+-If sort results look wrong, print the index of the minimum found at each outer-loop step to confirm selection logic.
+
+-If compareTo throws class cast or null pointer exceptions, add safe guards and validate inputs to locate where the bad values come from.
+
+    Suggested deliverables and documentation
+
+-Include the three source files with clear top-of-file comments describing assumptions (ID generation approach, compareTo behavior).
+
+-Include sample console output demonstrating before/after sorting for both ID and name-based comparisons.
+
+-Add inline comments for any non-obvious design decisions (e.g., why you chose case-insensitive name comparison).
+
+-Add a short README explaining how to compile and run the test harness and what tests to expect.
+
+    Nice-to-have enhancements (optional)
+
+-Instead of changing compareTo repeatedly, show how to use a Comparator to sort by different fields without modifying the natural ordering (this is optional but useful to mention since it’s better design).
+
+-Provide simple unit tests using a testing framework (JUnit) that assert sorting invariants.
+
+-Add Javadoc for public API methods and classes.
+
+    Quick checklist before submission
+
+-Student IDs auto-generated via a private static tracker and no public setter for IDs.
+
+-Accessors and mutators present and validated.
+
+-compareTo implemented correctly (first by ID, then swapped to name).
+
+-Generic selection sort implemented and documented; code handles edge cases.
+
+-Test harness prints readable before/after arrays and includes assertions.
+
+-No use of Collections.sort.
+
+-Clear README and comments.
+
+
+
+
+NOTES SECTION:
+
+Inheritance in Java:
+
+    -defines the relationship between classes or class files extending functionality
+    -Java is single inheritance, only extending from one other class.
+    -a simile example is like parent/child classes, where one class has functionality and the other class inherits said functionality(idk I need an example l8r)
+    -Superclass and subclass is common vocab.
+    -Every class derives from object, contains methods like get class or to string
+    -every class either descends from that (object) class or has it in its heirarchy
+    - EG:
+        -clothing item class, without special notation it is inherently a subclass of Object
+        -If I made subclasses for that like a shoes class, shirts class, and pants class, you would designate those as subclasses to the clothing item class
+    -Without annotation like finals(which removes extendabulity) any class can be a superclass to another.
+    -unless fields and methods in a superclass are marked private, any subclass will be able to access those fields and methods.
+    -an example of a getter and setter method, which is a way to get data from a private method or field from a superclass:
+
+    public class ClothingItem{
+        private String size;
+        public String getType(){
+            return "Clothing item";
+        }
+        public String getSize(){
+            return size;
+        }
+        public void setSize(String size){
+            this.size =size;
+        }
+    }
+
+    -because it has no extends annotation it is a subclass of Object
+
+-Subclass of ClothingItem example:
+    public class Hat extends ClothingItem{
+        @override
+        public string get Type(){
+            return "Hat";
+        }
+    }
+-the extends keyword creates the inheritance relationship
+-@override helps compiler catch errors and improves readability
+-it will also make the method getType take precidence as you may have the same method in the suerclass
+- if you had a get type method that returns an integer it would reject as
+the compiler looks at the ovveride of the method, and must return the same type and have the same number of arguments
+
+    -polymorphism
+-in these super and sub relationships, you can write methods that accept objects typed as the superclass, but are concrete instances in the subclass
+-this lets you call inherited methods without knowing the exact type
+-methods can declare arguments as the super type (????)
+and accept objects which are instances of the sub types
+-this improves flexibility.
+    -Polymorphic example
+    -will use the super type in declaration and sub type in initialization:
+        Clothingitem item = new Hat();
+        Sysoutprintln("this is a" + item.getType());
+- the type is set as the superclass(clothing item) and initializes it as a subclass(Hat)
+-since its calling the get type from the subclass it will return this is a hat(line 184)
+-CONSOLIDATE THESE TO PACKAGES TO ORGANIZE
+
+    -https://www.linkedin.com/learning/java-essential-training-objects-and-apis/extend-classes-and-override-methods?u=74653082
+
+    in the superclass there will be a few fields
+    type, size, and price
+    these fields will be private
+    generate constructors in the code button, which includes all 3 fields
+    eg: public ClothingItem(String type, String size, double price){
+        this.type = type;
+        etc...
+    }
+
+-you also want to generate getter and setter methods through code, allowing to modify the fields from other classes
+-another method is to string, which is good for debugging so you can see what is being helpd at any time.
+-THESE CAN ALL BE GENERATED WITH THE CODE SECTION
+-then you should call the clothing item class to the main class, which is not in the package containing the super and subs classes. this has a required import statement which autofills usuially
+    -EG what to call to make the item in main
+    ClothingItem item = new ClothingItem(type "shirt", size "L", price 19.99)
+sout template to sysout(item);
+
+-since in the class there is a toString method there is no need to explicitely call them
+    -the shirt subclass extends clothing item
+    - the subclass needs its own constuctor EG:
+    public Shirt(String type, String size, double price)
+        super(type, size, price);
+-this doesnt need the type field, however as it already is a shirt
+public Shirt( String size, double price)
+    super("Shirt", size, price);
+
+-Then going back to main, you want to create an instance of the Shirt class in the Java main.
+eg: Shirt shirt = new Shirt(size:"M", price:14.99)
+-you dont have to pass type, as its automatically created by the shirt class
+clothing item class has the toString method which is inherited by the Shirt class
+-Superclass isnt marked specially, automatically extends object class which has to string and such, but subclass extends cothing item so it inherits things the superclass has avalable
+
+
+
