@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Person implements Serializable {
+private static final long serialVersionUID = 1L;
 private String name;
 private int age;
 public Person(String name, int value) {
@@ -63,7 +64,7 @@ public void add() throws IOException {
 	
 }
 public void display() throws IOException, ClassNotFoundException {
-	File file = new File(fileName);
+//	File file = new File(fileName);
 	
 	 try (
 	            FileInputStream fileIn = new FileInputStream("PIOreadwrite.txt");
