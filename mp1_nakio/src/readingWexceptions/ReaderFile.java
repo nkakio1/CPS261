@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class ReaderFile {
 
-//MAKE OUTPUT FILE INSTEAD OF PRINTING TO SYSTEM, Make program return when file is not found.
+//MAKE OUTPUT FILE INSTEAD OF PRINTING TO SYSTEM
 
 	public static void main(String[] args) throws FileNotFoundException {
 		PrintStream originalOut = System.out;
@@ -22,7 +22,7 @@ public class ReaderFile {
 		
 
 			try {
-	            // Step 2: Set up the new output stream to a file
+	         
 	            PrintStream fileOut = new PrintStream(new FileOutputStream("OUTput.txt", true));
 	            System.setOut(fileOut);
 		
@@ -60,7 +60,6 @@ public class ReaderFile {
 		}
 		try (Scanner Numscan = new Scanner(new File(filename))){
 			if (Numscan.hasNextLine() && numcap!=0) {
-                // Read the first line and discard it.
 				Numscan.nextLine();
 				int NumCount =0;
 				int Rowcnt =0;
@@ -118,9 +117,9 @@ public class ReaderFile {
 		
 		
 		
-}//main
+}
 		
-}//class
+}
 }
 
 
@@ -133,40 +132,30 @@ public class ReaderFile {
  * 
  * Tool: copilot
  * 
- * Prompt : why is this only printing 9 characters in a row public 
+ * Prompt : why is this only printing 9 characters in a row 
  * Original code:
- *  * 	public static void main(String[] args) throws IOException {
-		String filename = "file1.txt";
-
-		try (Scanner fs = new Scanner(new File(filename))) {
-
-		    if (fs.hasNextLine()) {		
-		    	String line =fs.next();
-		    	System.out.print(line);
-		    	System.out.print(" Generated this: \n");
-		    	numcap = fs.next();
-		       }//if statement
-		     }//try
-		int numcap =1;
-		
-		
-		
-		
-		
-		AI USED:
-		
-		Tool: copilot
-		Prompt: I cant read a variable outside my loop here 
-		Original code: 
-		* int Rowcnt =0;
+ *  *	try (Scanner Numscan = new Scanner(new File(filename))){
+			if (Numscan.hasNextLine()) {
+                // Read the first line and discard it.
+				Numscan.nextLine();
+				int NumCount =0;
+				int Rowcnt =0;
 				while (Numscan.hasNext()){
+						asa = asa +1;
+					}else {
 					String readint = Numscan.next();
-				Rowcnt = Rowcnt +1;
-				if(Rowcnt =< 10) {
+					System.out.print(readint + " ");
+					Rowcnt = Rowcnt +1;
+					NumCount = NumCount+1;
+				if(Rowcnt >=9) {
 					Rowcnt = 0;
 					System.out.print("\n");
-				}else if(Rowcnt <= 10) {
-					System.out.print(readint + " ");
+				}else if(NumCount == numcap) {
+					System.out.println();
+					break;
+				}
+		
+		AI suggested to: change >=9 to ==10
 		
  * 
  * AI USED:
@@ -181,16 +170,18 @@ public class ReaderFile {
 	            PrintStream fileOut = new PrintStream(new FileOutputStream("OUTput.txt"));
 	            System.setOut(fileOut);
  * 
+ * AI suggested to add the true statement to the "OUTput.txt" true));
+ * 
  * 
  * AI USED:
- * Tool: Gemini Structured Learning Mode 
+ * Tool: Gemini guided Learning Mode 
  * Prompt: 
 
  Original code:Why is this still running through the program, even though the number which sets the desired output numbers is 0 (numcap)
  
  try (Scanner Numscan = new Scanner(new File(filename))){
 			if (Numscan.hasNextLine()) {
-                // Read the first line and discard it.
+        
 				Numscan.nextLine();
 				int NumCount =0;
 				int Rowcnt =0;
@@ -212,7 +203,16 @@ public class ReaderFile {
 				}
 					}
 				}//while
+AI suggested to: It went through the process of the loop like this:
+First, let's trace what happens in your code when numcap is set to 0:
 
+The loop starts.
+
+Your code reads the first item from the file.
+
+The NumCount variable goes from 0 to 1.
+
+Then, your code checks if NumCount is equal to numcap. What are the values of NumCount and numcap at this point? Is the condition NumCount == numcap true or false?
 		
  *
  *

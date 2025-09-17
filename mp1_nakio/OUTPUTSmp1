@@ -1,0 +1,94 @@
+
+Reading with exceptions:
+
+MyOutput1.txt Generated this: 
+20 1 4 5 7 8 9 10 11 12 
+13 14 45 46 47 48 49 50 51 1 
+2 3 
+niceJob.txt Generated this: 
+20 1 5 7 45 1 2 3 4 5 
+6 7 8 9 77 88 99 23 34 56 
+OneLastOutput.txt Generated this: 
+
+
+console log:
+file1.txt
+Your data has be output to OUTpu.txt!
+file2.txt
+Not enough data to reach desired number!
+ 
+
+Non Number included in file.
+
+Your data has be output to OUTpu.txt!
+
+file3.txt
+
+ Not enough data or limit of 0!
+Your data has be output to OUTpu.txt!
+
+
+PersionIO:
+
+console log:
+Please choose an option:
+0: quit
+1: add
+2: display
+1
+Enter Name:
+mr the 2nd
+Enter a number for age
+
+s
+Sorry, please enter a number for age
+
+Enter a number for age
+
+2
+Please choose an option:
+0: quit
+1: add
+2: display
+2
+Person [name=mr, age=2]
+Please choose an option:
+0: quit
+1: add
+2: display
+1
+Enter Name:
+s
+Enter a number for age
+
+2
+Please choose an option:
+0: quit
+1: add
+2: display
+1
+Enter Name:
+s
+Enter a number for age
+
+3
+Please choose an option:
+0: quit
+1: add
+2: display
+2
+Person [name=s, age=3]
+Please choose an option:
+0: quit
+1: add
+2: display
+0
+Bye
+
+
+NOTES:::!!!!!!
+
+
+I really struggled here re learning while I was also learning new concepts,
+I now know what I need to do for the next machine project, as I was too focused on the concepts and started the project much too late
+Gemini has a feature called guided learning which helped me beyond belief as it would, rather than give me code to copy and paste, give me an explenation on why its not working, and let me know what concepts to look at when I needed help with more than simple debugging or forgot something like how to make a loop or why objectoutputs require serialization.
