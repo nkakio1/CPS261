@@ -20,7 +20,7 @@ public class MySelectionSort extends Main{
 	    	
 	    	//Array.sort(arrayOne);
 
-	    	
+	    	Arrays.sort(arrayOne,    (a , b) -> a.compareTo(b)    );
 	    	
 		}
 	

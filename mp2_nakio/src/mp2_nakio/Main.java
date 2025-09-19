@@ -47,16 +47,23 @@ public class Main {
 		arrayOne.add(new Student("Alice2", 3.1));
 		arrayOne.add(new Student("Bob2", 2.5));
 	*/	
-		Student.setStudentIDnum(0);
+	//	Student.setStudentIDnum(0);
 		
-		int result = people[0].compareTo(people[1]);
+	//	int result = people[0].compareTo(people[1]);
 		
-		System.out.println(result);  // -1, 0, or 1 depending on IDs
+	//	System.out.println(result);  // -1, 0, or 1 depending on IDs
 		
 	//	Array.sort(arrayOne,    (a , b) -> a.compareTo(b)    );
-		Arrays.sort(people,    (a , b) -> a.compareTo(b)    );
 		//System.out.println(people[1]);
+	/*	
+		people[0].setStudentID(22222);
+		people[1].setStudentID(20);
+		people[2].setStudentID(3);
+		people[3].setStudentID(4);
+*/
+	//	Arrays.sort(people,    (a , b) -> a.compareTo(b)    );
 		
+		MySelectionSort.sortArray(people);
 		System.out.println(Arrays.toString(people));
 	}
 }
