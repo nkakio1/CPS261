@@ -73,7 +73,7 @@ public class Student extends Main implements Comparable<Student> {
 		Student.studentIDnum = studentIDnum;
 	}
 
-
+/*
 	@Override
 	public int compareTo(Student other) {
 		// TODO Auto-generated method stub
@@ -85,5 +85,16 @@ public class Student extends Main implements Comparable<Student> {
 	            return 0;
 	        }
 	}
-
+*/
+	@Override
+	public int compareTo(Student other) {
+		// TODO Auto-generated method stub
+		 if (this.name.length() < other.name.length()) {
+	            return -1;
+	        } else if (this.name.length() > other.name.length()) {
+	            return 1;
+	        } else {
+	            return 0;
+	        }
+	}
 }
