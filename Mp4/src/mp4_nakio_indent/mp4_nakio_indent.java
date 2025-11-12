@@ -4,16 +4,12 @@ package mp4_nakio_indent;
 import java.util.Scanner;
 import java.util.Stack;
 
-/**
- * Indentation checker that reads and validates files located in the same package
- * as this source code. It prints a numbered listing of each line and reports
- * whether indentation is proper according to stack-based indentation rules.
- */
+
 public class mp4_nakio_indent {
     private final Stack<Integer> indentStack = new Stack<>();
 
     static class BadIndentationException extends RuntimeException {
-        private static final long serialVersionUID = 1L; // Eclipse: RuntimeException is Serializable
+        private static final long serialVersionUID = 1L; 
         BadIndentationException(String message) { super(message); }
     }
 
@@ -51,14 +47,11 @@ public class mp4_nakio_indent {
         }
     }
 
-    /**
-     * Check indentation for a file located in the same package as this class.
-     */
+    
     public void checkIndentation(String fileName) {
         indentStack.clear();
 
-        // Load from the same package as this class. Place the .txt files in the
-        // same package folder as IndentChecker.java under a source folder (e.g., src/).
+       
         java.io.InputStream in = mp4_nakio_indent.class.getResourceAsStream(fileName);
         if (in == null) {
             System.out.println("File not found in package: " + fileName);
@@ -94,4 +87,71 @@ public class mp4_nakio_indent {
             System.out.println("\nProcessing file: " + file);
             checker.checkIndentation(file);
         }
-    }}
+    }
+    
+/*prompt: this throws an exception when empty, 
+int top = indentStack.peek(); 
+if (index > top) { ... }
+ * 
+ * chat gpt output
+if (indentStack.isEmpty()) {
+    indentStack.push(index);
+    return;
+}
+int top = indentStack.peek();
+
+
+
+prompt: i dont know what s wrong here:
+private int findFirstNonBlank(String line) {
+    for (int i = 0; i < line.length(); i++) {
+        if (line.charAt(i) != ' ') return i; 
+    }
+    return -1;
+}
+ansswer:    private int findFirstNonBlank(String line) {
+        if (line == null || line.isEmpty()) return -1;
+        for (int i = 0; i < line.length(); i++) {
+            if (!Character.isWhitespace(line.charAt(i))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+prompt: issue when null, what are some options
+InputStream in = mp4_nakio_indent.class.getResourceAsStream(fileName);
+try (Scanner input = new Scanner(in)) { 
+
+chosen answer:        java.io.InputStream in = mp4_nakio_indent.class.getResourceAsStream(fileName);
+        if (in == null) {
+            System.out.println("File not found in package: " + fileName);
+            return;
+        }
+
+        try (Scanner input = new Scanner(in)) {
+
+prompt: how do I define and skip a blank line
+private void processLine(String line, int lineNumber) {
+    int index = findFirstNonBlank(line);
+   
+chat gpt:     private void processLine(String line, int lineNumber) {
+        int index = findFirstNonBlank(line);
+        if (index == -1) return; // blank line
+
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+}

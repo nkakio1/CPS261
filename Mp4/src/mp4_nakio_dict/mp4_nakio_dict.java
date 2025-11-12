@@ -4,27 +4,14 @@ package mp4_nakio_dict;
 import java.io.*;
 import java.util.*;
 
-// Refit to match the provided Sample_Output format:
-// 1) Prints a header: "======== Spell checking <file> ========="
-// 2) For each line that has at least one unknown token, prints: "line number:<n>"
-// 3) Then, for each unknown token in that line (in appearance order), prompts:
-//      <word> add to dictionary? y or n
-//    - 'y' adds it to the dictionary (persists for the rest of the run)
-//    - 'n' records it as miss-spelled (kept in a sorted set)
-//    - If the same token appears again later, we don't prompt again.
-// 4) At the end prints "======miss spelled words======" followed by the words in alpha order.
-// 5) Tokenization: split on any char that is NOT a letter, digit, '-' or '–' (en dash), so
-//    words like "mexican–american", "g20", and accented letters (México) are handled.
-// 6) Dictionary is read from dictionary.txt (one word per line; case-insensitive).
 
 public class mp4_nakio_dict {
     private final HashSet<String> dictionary = new HashSet<>();
     private final TreeSet<String> missSpelled = new TreeSet<>();
-    private final Scanner input; // single System.in scanner for prompts
+    private final Scanner input; 
 
     public mp4_nakio_dict() {
         this.input = new Scanner(System.in);
-        // Try multiple likely locations for dictionary.txt
         File dict = resolveFile(
                 "dictionary.txt",
                 "src/mp4_nakio_dict/dictionary.txt",
@@ -33,7 +20,6 @@ public class mp4_nakio_dict {
         if (dict == null) {
             System.out.println("[Error] dictionary.txt not found. Working directory: "
                     + new File(".").getAbsolutePath());
-            System.out.println("Place dictionary.txt in the project root or src/mp4_nakio_dict/ and run again.\n");
         } else {
             try {
                 loadDictionary(dict.getPath());
@@ -43,7 +29,6 @@ public class mp4_nakio_dict {
         }
     }
 
-    /** Returns the first path that exists on disk, or null if none do. */
     private File resolveFile(String... candidates) {
         for (String p : candidates) {
             File f = new File(p);
@@ -82,7 +67,7 @@ public class mp4_nakio_dict {
                 lineNo++;
                 String line = fileScanner.nextLine();
 
-                // Split into tokens: keep letters (any language), digits, '-' and en dash '–'
+               
                 String[] raw = line.split("[^\\p{L}\\p{Nd}-–]+");
 
                 boolean printedLineNumber = false;
@@ -117,7 +102,7 @@ public class mp4_nakio_dict {
             return;
         }
 
-        // Print final report
+     
         System.out.println("======miss spelled words======");
         for (String w : missSpelled) {
             System.out.println(w);
@@ -126,9 +111,7 @@ public class mp4_nakio_dict {
 
     public static void main(String[] args) {
         mp4_nakio_dict sc = new mp4_nakio_dict();
-        // If dictionary failed to load, we can still run; user can add words ad-hoc.
         if (args.length == 0) {
-            // Default to Mexico.txt, try common locations automatically
             sc.checkSpelling("Mexico.txt");
         } else {
             for (String f : args) sc.checkSpelling(f);
@@ -151,7 +134,7 @@ public class mp4_nakio_dict {
             }
         }
     }
-SOULUTION
+chat gpt SOULUTION
     public mp4_nakio_dict() throws FileNotFoundException {
         // Add all of the words from "dictionary.txt" to the dictionary HashSet
         try (Scanner sc = new Scanner(new File("dictionary.txt"))) {
@@ -191,7 +174,7 @@ ERROR HERE     private void handleUnknownWord(String word) {
             }
         }
     }
-SOULUTION private void handleUnknownWord(String word) {
+chat gpt SOULUTION private void handleUnknownWord(String word) {
         try (Scanner in = new Scanner(System.in)) {
 			while (true) {
 			    System.out.print("Unknown word '" + word + "'. (D) add to Dictionary, (M) mark miss-spelled: ");
@@ -210,11 +193,11 @@ SOULUTION private void handleUnknownWord(String word) {
     }
     
     
-    ERROR HER     public mp4_nakio_dict() throws FileNotFoundException {
+    ERROR HERE     public mp4_nakio_dict() throws FileNotFoundException {
         this.input = new Scanner(System.in);
         loadDictionary("dictionary.txt");
     }
-SOULUTION public mp4_nakio_dict() {
+chat gpt SOULUTION public mp4_nakio_dict() {
         this.input = new Scanner(System.in);
         // Try multiple likely locations for dictionary.txt
         File dict = resolveFile(
@@ -234,5 +217,63 @@ SOULUTION public mp4_nakio_dict() {
             }
         }
     }
+    
+    
+    prompt: why isnt myfile finding the text files?
+    public class mp4_nakio_dict {
+    final HashSet<Str> dictionary = new HashSet<>();
+    final TreeSet<Str> missSpelled = new TreeSet<>();
+    final Scanner input; 
+
+    public mp4_nakio_dict() {
+        this.input = new Scanner(System.in);
+        File dict = resolveFile(
+                "dictionary.txt",
+                "src/mp4_nakio_dict/dictionary.txt",
+                "src/dictionary.txt"
+        );
+       
+            }
+        }
+    }
+    
+    SOULUTION + other fixes
+    public class mp4_nakio_dict {
+    private final HashSet<String> dictionary = new HashSet<>();
+    private final TreeSet<String> missSpelled = new TreeSet<>();
+    private final Scanner input; 
+
+    public mp4_nakio_dict() {
+        this.input = new Scanner(System.in);
+        File dict = resolveFile(
+                "dictionary.txt",
+                "src/mp4_nakio_dict/dictionary.txt",
+                "src/dictionary.txt"
+        );
+        if (dict == null) {
+            System.out.println("[Error] dictionary.txt not found. Working directory: "
+                    + new File(".").getAbsolutePath());
+        } else {
+            try {
+                loadDictionary(dict.getPath());
+            } catch (FileNotFoundException e) {
+                System.out.println("[Error] Failed to open dictionary at: " + dict.getPath());
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
      */
 
